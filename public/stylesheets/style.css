@@ -21,6 +21,7 @@ body {
   height: 60px;
 }
 h2 {
+  padding-left: 15px;
   color: #311b92;
 }
 .content {
@@ -29,6 +30,24 @@ h2 {
 .form {
   margin-top: 10px;
 }
+#uploadedimg {
+  height: 180px;
+}
 .invisibleinput {
   visible: false;
+}
+#styleimageselector {
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+.styleimagebox {
+  padding: 10px;
+}
+.styleimageboxtitle {
+  min-height: 55px;
+  padding: 5px;
+  padding-bottom: 10px;
+}
+.img-responive {
+  padding: 0px;
 }

@@ -1,20 +1,42 @@
 extends layout
 
 block content
-    h1= title
-    h2 Transfer the style
-    .p.content Node style transfer gives you the posibility to take the style of one image and apply it to antoher
-    .p.content Upload the image you want to style
-    .div.col-md-12
-        form(class='col-md-6', method='post', action='/uploadimage', enctype='multipart/form-data')
-            div(id='browse_form_area', class='file-field input-field col-md-12')
-                div(class='btn teal darken-3', type='button')
-                    span Browse
-                    input(type='file', name='file')
-                div.file-path-wrapper
-                    input(class='file-path validate', type='text')
-            button(class='btn teal darken-3 col-md-5', type='submit') Upload
-        .div.col-md-6
-            img(class='col-md-12 img-responsive', src='../../images/content/#{uploadedImagePath}' alt='Test')
-    form(class='col-md-12', method='get', action='/startstyletransfer', enctype='multipart/form-data')
-        button(class='btn teal darken-3 col-md-10', type='submit') Start style transfer
+	h1= title
+	h2 Transfer the style
+	.div.col-md-6		
+		.p.content Node style transfer gives you the posibility to take the style of one image and apply it to antoher
+		.p.content Upload the image you want to style
+		form(class='col-md-12', method='post', action='/uploadimage', enctype='multipart/form-data')
+			div(id='browse_form_area', class='file-field input-field col-md-12')
+				div(class='btn teal darken-3', type='button')
+					span Browse
+					input(type='file', name='file')
+				div.file-path-wrapper
+					input(class='file-path validate', type='text')
+			button(class='btn teal darken-3 col-md-offset-2 col-md-6', type='submit') Upload
+	.div.col-md-6#uploadedimg
+		img(class='col-md-6 img-responsive', src='../../images/content/#{uploadedImagePath}' alt='Test')
+	.div.col-md-12#styleimageselector
+		.p.content Pick one of the art pieces to transfer that style to you image
+		.div.col-md-3.styleimagebox
+			.div.col-md-12.z-depth-5.styleimageboxtitle
+				.p The great wave off Kanagawa
+				.p Hokusai
+			img(class='col-md-12 img-responive z-depth-5', src='../../images/style/art_the_great_wave_off_kanagawa.jpg', alt='The great wave off kanagawa')
+		.div.col-md-3.styleimagebox
+			.div.col-md-12.z-depth-1.styleimageboxtitle
+				.p Starry night
+				.p Vincent van gogh
+			img(class='col-md-12 img-responive z-depth-1', src='../../images/style/art_starry_night.jpg', alt='Starry night')
+		.div.col-md-3.styleimagebox
+			.div.col-md-12.z-depth-1.styleimageboxtitle
+				.p Cafe terrace at night
+				.p Vincent van gogh
+			img(class='col-md-12 img-responive z-depth-1', src='../../images/style/art_cafe_terrace_at_night.jpeg', alt='Cafe terrace at night')
+		.div.col-md-3.styleimagebox
+			.div.col-md-12.z-depth-1.styleimageboxtitle
+				.p Heinrich Schlief
+				.p 
+			img(class='col-md-12 img-responive z-depth-1', src='../../images/style/art_heinrich_schlief.jpg', alt='Heinrich Schlief')
+	form(id='startstyletransferbtn', class='col-md-12', method='get', action='/startstyletransfer', enctype='multipart/form-data')
+		button(class='btn teal darken-3 col-md-offset-1 col-md-10', type='submit') Start style transfer
