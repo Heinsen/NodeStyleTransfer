@@ -16,7 +16,9 @@
     "materialize-css": "^0.97.8",
     "morgan": "~1.7.0",
     "multer": "^1.2.0",
+    "pkg-config": "^1.1.1",
     "serve-favicon": "~2.3.0",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "zmq": "^2.15.3"
   }
 }
