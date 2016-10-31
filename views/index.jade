@@ -1,5 +1,20 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    h1= title
+    h2 Transfer the style
+    .p.content Node style transfer gives you the posibility to take the style of one image and apply it to antoher
+    .p.content Upload the image you want to style
+    .div.col-md-12
+        form(class='col-md-6', method='post', action='/uploadimage', enctype='multipart/form-data')
+            div(id='browse_form_area', class='file-field input-field col-md-12')
+                div(class='btn teal darken-3', type='button')
+                    span Browse
+                    input(type='file', name='file')
+                div.file-path-wrapper
+                    input(class='file-path validate', type='text')
+            button(class='btn teal darken-3 col-md-5', type='submit') Upload
+        .div.col-md-6
+            img(class='col-md-12 img-responsive', src='../../images/content/#{uploadedImagePath}' alt='Test')
+    form(class='col-md-12', method='get', action='/startstyletransfer', enctype='multipart/form-data')
+        button(class='btn teal darken-3 col-md-10', type='submit') Start style transfer
