@@ -31,8 +31,8 @@ function startStyleTransfer(contentImagePath, styleImagePath, callback) {
 	addresses[0]="104.210.112.179";
 	//REmove next lane when not on local host. TO BE TESTED WITHOut!
 	console .log(addresses[0] + "\t" + styleImagePath + "\t" + contentImagePath + "\n");
-	styleImagePath = addresses[0] + '/' + styleImagePath;
-	contentImagePath = addresses[0] + '/' + contentImagePath;
+	styleImagePath = addresses[0] + '/images/style/' + styleImagePath;
+	contentImagePath = addresses[0] + '/contentupoads/' + contentImagePath;
   	requester.send(addresses[0] + "#" + styleImagePath + "#" + contentImagePath);
 
 	callback('Style transfer started');
