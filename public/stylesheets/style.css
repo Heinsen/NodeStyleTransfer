@@ -4,6 +4,12 @@ body {
   color: #000;
   font-size: 15px;
   font-family: Roboto;
+  height: 100%;
+  overflow: auto;
+}
+html {
+  overflow: hidden;
+  height: 100%;
 }
 .navbar {
   background: #311b92;
@@ -30,18 +36,38 @@ h2 {
 .form {
   margin-top: 10px;
 }
-#uploadedimg {
-  height: 180px;
+#contentimgbox {
+  height: 230px;
+  width: 300px;
+  padding: 5px;
+}
+#contentimgsrc {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 .invisibleinput {
   visible: false;
 }
 #styleimageselector {
-  margin-top: 40px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+#styleimageselectortext {
+  margin-bottom: 20px;
 }
 .styleimagebox {
   padding: 10px;
+}
+.styleimageboximage,
+.waves-effect.waves-deep-purple .waves-ripple {
+  background-color: rgba(49,27,146,0.65);
+}
+.waves-effect.waves-deep-green .waves-ripple {
+  background-color: rgba(0,105,92,0.65);
+}
+.selectedstyleimagebox {
+  background-color: #00695c;
+  color: #fff;
 }
 .styleimageboxtitle {
   min-height: 55px;
@@ -50,4 +76,7 @@ h2 {
 }
 .img-responive {
   padding: 0px;
+}
+#startstyletransferbtn {
+  margin-bottom: 100px;
 }

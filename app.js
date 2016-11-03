@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 
 var app = express();
 
@@ -20,13 +19,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, './public')));
+app.use('/contentuploads', express.static(path.join(__dirname,'./contentuploads')));
 app.use('/bootstrap', express.static(path.join(__dirname,'./node_modules/bootstrap/dist/')));
 app.use('/jquery', express.static(path.join(__dirname,'./node_modules/jquery/dist/')));
 app.use('/materialize', express.static(path.join(__dirname,'./node_modules/materialize-css/dist')));
 
 app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
