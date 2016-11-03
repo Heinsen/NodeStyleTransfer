@@ -1,43 +1,44 @@
-var express = require('express')
+var express = require('express');
 var router = express.Router();
-
-var fs = require("fs");
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
 
 var loadbalancer = require('../models/loadbalancer.js');
 
-var contentImagePath;
+var fs = require("fs");
+var multer  = require('multer');
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'contentuploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '.jpg');
+  }
+});
+
+var upload = multer({ storage: storage });
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+	res.render('index', {uploadedImagePath: '/images/resources/white_square.png'});
 });
 
 /* Upload content image */
 router.post('/uploadimage', upload.single('file'), function(req, res, next) {
-	//Still have not figured the correct way to determine the path, but this works
-	var file = __dirname + '/../public/images/content/' + req.file.filename;
-	console.log(file)
-  	fs.rename(req.file.path, file, function(err) {
-    	if (err) {
-      		console.log(err);
-      		res.send(500);
-    	} else {
-    		contentImagePath = req.file.filename;
-
-      		res.render('index', {
-      		uploadedImagePath: req.file.filename });
-    	}
-  	});
+	if(req.file != undefined) {
+		res.render('index', { uploadedImagePath: req.file.path } );
+	}
+	else {
+		res.render('index');
+	}
 });
 
 router.get('/startstyletransfer', function(req, res, next) {
 
-	var publicimagePath = __dirname + '../public/images/';
+	var contentImage = req.query.content_image;
+	var styleImage = req.query.style_image;
 
-	loadbalancer.startstyletransfer(publicimagePath + 'content/' + contentImagePath,
-									publicimagePath + 'style/art_the_great_wave_off_kanagawa.jpg',
+	loadbalancer.startstyletransfer(contentImage,
+									styleImage,
 									function(result) {
   		res.render('styletransferprogress', {});
 	});
