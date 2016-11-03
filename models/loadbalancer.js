@@ -14,7 +14,7 @@ for (var k in interfaces) {
     }
 }
 
-var loadBalancerIP = "127.0.0.1"
+var loadBalancerIP = "13.75.157.66"
 
 function startStyleTransfer(contentImagePath, styleImagePath, callback) {
 	console.log(contentImagePath);
@@ -30,8 +30,7 @@ function startStyleTransfer(contentImagePath, styleImagePath, callback) {
 	requester.connect("tcp://"+loadBalancerIP+":5555");
 
 	//REmove next lane when not on local host. TO BE TESTED WITHOut!
-	addresses[0]="127.0.0.1";
-	
+	console .log(addresses[0]);
 	styleImagePath = addresses[0] + '/' + styleImagePath;
 	contentImagePath = addresses[0] + '/' + contentImagePath;
   	requester.send(addresses[0] + "#" + styleImagePath + "#" + contentImagePath);
