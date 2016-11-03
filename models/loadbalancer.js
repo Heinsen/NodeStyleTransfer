@@ -30,7 +30,7 @@ function startStyleTransfer(contentImagePath, styleImagePath, callback) {
 	requester.connect("tcp://"+loadBalancerIP+":5555");
 	addresses[0]="104.210.112.179";
 	//REmove next lane when not on local host. TO BE TESTED WITHOut!
-	console .log(addresses[0]);
+	console .log(addresses[0] + "\t" + styleImagePath + "\t" + contentImagePath + "\n");
 	styleImagePath = addresses[0] + '/' + styleImagePath;
 	contentImagePath = addresses[0] + '/' + contentImagePath;
   	requester.send(addresses[0] + "#" + styleImagePath + "#" + contentImagePath);
