@@ -1,4 +1,5 @@
 var express = require('express');
+const jade = require('jade');
 var router = express.Router();
 
 var loadbalancer = require('../models/loadbalancer.js');
@@ -16,6 +17,8 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({ storage: storage });
+
+const resulttemplateCompileFunction = jade.compileFile('views/partials/resulttemplate.jade');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -37,11 +40,31 @@ router.get('/startstyletransfer', function(req, res, next) {
 	var contentImage = req.query.content_image;
 	var styleImage = req.query.style_image;
 
+	var resul = loadresult();
+	console.log(resul);
 	loadbalancer.startstyletransfer(contentImage,
 									styleImage,
 									function(result) {
-  		res.render('styletransferprogress', {});
+  		res.render('styletransferprogress', { results : resul });
 	});
 });
+
+router.get('/completedstyletransfers', function(req, res, next) {
+	var resul = loadresult();
+	res.render('completedstyletransfers', { results : resul });
+});
+
+
+function loadresult() {
+
+	var files = fs.readdirSync('./public/images/results/');
+	var resultDiv = "";
+	files.forEach(file => {
+		resultDiv += resulttemplateCompileFunction({
+			result_name : ('/images/results/' + file)
+		});
+	});
+	return resultDiv;
+}
 
 module.exports = router;
