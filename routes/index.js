@@ -35,6 +35,16 @@ router.post('/uploadimage', upload.single('file'), function(req, res, next) {
 	}
 });
 
+/* Upload completed styl-transfer */
+router.post('/public/images/results', upload.single('file'), function(req, res, next) {
+	if(req.file != undefined) {
+		res.render('index', { uploadedImagePath: req.file.path } );
+	}
+	else {
+		res.render('index');
+	}
+});
+
 router.get('/startstyletransfer', function(req, res, next) {
 
 	var contentImage = req.query.content_image;
