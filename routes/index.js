@@ -16,7 +16,9 @@ var storage = multer.diskStorage({
   }
 });
 
+
 var upload = multer({ storage: storage });
+var uploadStyleTansfer = multer({ dest: "public/images/results/" });
 
 const resulttemplateCompileFunction = jade.compileFile('views/partials/resulttemplate.jade');
 
@@ -36,7 +38,7 @@ router.post('/uploadimage', upload.single('file'), function(req, res, next) {
 });
 
 /* Upload completed styl-transfer */
-router.post('/public/images/results', upload.single('file'), function(req, res, next) {
+router.post('/public/images/results', uploadStyleTansfer.single('file'), function(req, res, next) {
 	if(req.file != undefined) {
 		res.render('index', { uploadedImagePath: req.file.path } );
 	}
