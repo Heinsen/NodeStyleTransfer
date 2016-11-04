@@ -3,6 +3,8 @@ const jade = require('jade');
 var router = express.Router();
 
 var loadbalancer = require('../models/loadbalancer.js');
+
+var fs = require("fs");
 var multer  = require('multer');
 
 var storage = multer.diskStorage({
