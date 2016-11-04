@@ -1,5 +1,14 @@
 FROM node:argon
 
+RUN apt-get update && apt-get install -y \ 
+	libtool \
+	pkg-config \
+	build-essential \
+	autoconf \
+	automake \
+	libzmq-dev \
+&& rm -rf /var/lib/apt/lists/*
+
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
