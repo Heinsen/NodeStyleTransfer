@@ -3,8 +3,6 @@ const jade = require('jade');
 var router = express.Router();
 
 var loadbalancer = require('../models/loadbalancer.js');
-
-var fs = require("fs");
 var multer  = require('multer');
 
 var storage = multer.diskStorage({
@@ -16,9 +14,7 @@ var storage = multer.diskStorage({
   }
 });
 
-
 var upload = multer({ storage: storage });
-var uploadStyleTansfer = multer({ dest: "public/images/results/" });
 
 const resulttemplateCompileFunction = jade.compileFile('views/partials/resulttemplate.jade');
 
@@ -29,16 +25,6 @@ router.get('/', function(req, res, next) {
 
 /* Upload content image */
 router.post('/uploadimage', upload.single('file'), function(req, res, next) {
-	if(req.file != undefined) {
-		res.render('index', { uploadedImagePath: req.file.path } );
-	}
-	else {
-		res.render('index');
-	}
-});
-
-/* Upload completed styl-transfer */
-router.post('/public/images/results', uploadStyleTansfer.single('file'), function(req, res, next) {
 	if(req.file != undefined) {
 		res.render('index', { uploadedImagePath: req.file.path } );
 	}

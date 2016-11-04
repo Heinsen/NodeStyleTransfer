@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+var index = require('./routes/index');
+var uploadresult = require('./routes/uploadresult');
 
 var app = express();
 
@@ -25,7 +26,8 @@ app.use('/bootstrap', express.static(path.join(__dirname,'./node_modules/bootstr
 app.use('/jquery', express.static(path.join(__dirname,'./node_modules/jquery/dist/')));
 app.use('/materialize', express.static(path.join(__dirname,'./node_modules/materialize-css/dist')));
 
-app.use('/', routes);
+app.use('/', index);
+app.use('/uploadresult/', uploadresult);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
