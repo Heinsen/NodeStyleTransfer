@@ -36,7 +36,7 @@ function startStyleTransfer(contentImagePath, styleImagePath, callback) {
 	contentImagePath = contentImagePath;
   	requester.send(addresses[0] + "#" + styleImagePath + "#" + contentImagePath);
 
-//	callback('Style transfer started');
+	callback('Style transfer started');
 	//When the function is done, the function callback can be used to deliver the result
 }
 
