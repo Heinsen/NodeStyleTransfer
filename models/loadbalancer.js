@@ -23,7 +23,8 @@ function startStyleTransfer(contentImagePath, styleImagePath, callback) {
 	var requester = zmq.socket('req');
 
 	requester.on("message", function(reply) {
-    		process.exit(0);
+    	//process.exit(0);
+		callback('Style transfer started');
 	});
 
 	
@@ -32,10 +33,10 @@ function startStyleTransfer(contentImagePath, styleImagePath, callback) {
 	//REmove next lane when not on local host. TO BE TESTED WITHOut!
 	console .log(addresses[0] + "\t" + styleImagePath + "\t" + contentImagePath + "\n");
 	styleImagePath = addresses[0] + '/images/style/' + styleImagePath;
-	contentImagePath = addresses[0] + '/contentupoads/' + contentImagePath;
+	contentImagePath = addresses[0] + '/contentuploads/' + contentImagePath;
   	requester.send(addresses[0] + "#" + styleImagePath + "#" + contentImagePath);
 
-	callback('Style transfer started');
+//	callback('Style transfer started');
 	//When the function is done, the function callback can be used to deliver the result
 }
 
