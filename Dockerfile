@@ -19,7 +19,7 @@ RUN npm install
 
 # Bundle app source
 COPY . /usr/src/app
-RUN mkdir -p /usr/src/app/public/images/results
+RUN mkdir /usr/src/app/contentuploads/
 
 EXPOSE 3000
 
